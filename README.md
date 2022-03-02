@@ -1,5 +1,5 @@
 # wireguard-generator
-A generator for configuration of Wireguard server and client
+A generator for configuration of Wireguard servers and clients
 
 # Flow
 1. Run __srvGen.sh__ at first according to the provided guide to generate a server config file
