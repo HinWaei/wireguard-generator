@@ -27,6 +27,17 @@ Endpoint = $endpoint
 PersistentKeepalive = 25
 " > $configName
 
-echo "###### Your client public key is $(echo $privKeyClient | wg pubkey) ######"
+pubKeyClient=$(echo $privKeyClient | wg pubkey)
+echo "###### Your client public key is  ######"
 
-bash ./addPeer.sh
+read -p "Please enter the public key of your client:" -i "$pubKeyClient" -e clientPubKey
+ls /etc/wireguard | grep -Ee "*.conf"
+read -p "Name of your server config?[e.g. wg0.conf]:" -e configName
+read -p "Please enter the range of allowed ips[the last ip is $(tail -n 2 $configName | grep -Eo '([0-9]+\.)+[0-9]+\/[0-9]+') ]:" -i "$clientInternalIP" -e allowedips
+
+echo "
+[Peer]
+PublicKey = $clientPubKey
+AllowedIPs = $allowedips
+
+" >> $configName
