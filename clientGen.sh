@@ -27,4 +27,6 @@ Endpoint = $endpoint
 PersistentKeepalive = 25
 " > $configName
 
+echo "###### Your client public key is $(echo $privKeyClient | wg pubkey) ######"
+
 bash ./addPeer.sh
