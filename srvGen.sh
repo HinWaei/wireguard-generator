@@ -1,6 +1,6 @@
 #!/bin/bash
-echo "Please enter the server internal IP[e.g. 192.168.0.1/24]:"
-read srvInternalIP
+
+read -p "Please enter the server internal IP[e.g. 192.168.0.1/24]:" -i "192.168.0.1/24" -e srvInternalIP
 echo "Please enter the listening port[21111]:"
 read -i "21111" -e srvExternalPort
 echo "Please enter config name[wg0]:"
@@ -27,10 +27,7 @@ DNS = $DNS
 MTU = $MTU
 " > $configName.conf
 
-echo "
-
-Please do remember to turn on ip forward: i.e. net.ipv4.ip_forward = 1
-"
+sed -Ei "s/(#net\.ipv4\.ip_forward=1)|(net\.ipv4\.ip_forward=0)/net.ipv4.ip_forward=1/g" /etc/sysctl.conf && sysctl -p
 
 
 
