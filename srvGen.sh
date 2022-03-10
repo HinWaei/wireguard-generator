@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /etc/wireguard/
+
 read -p "Please enter the server internal IP[e.g. 192.168.0.1/24]:" -i "192.168.0.1/24" -e srvInternalIP
 echo "Please enter the listening port[21111]:"
 read -i "21111" -e srvExternalPort
