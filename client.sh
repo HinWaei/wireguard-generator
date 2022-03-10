@@ -49,7 +49,6 @@ echo "
 [Peer]
 PublicKey = $clientPubKey
 AllowedIPs = $allowedips
-
 " >> $configServer
 
 echo "###### Please run systemctl restart wg-quick@your-service-name then ######"
